@@ -1,7 +1,13 @@
-.mainMenu{
-    height:60px;
-    width:100%;
-    color:white;
-    background-color:aqua;
-    position:fixed;
+@import 'globalVars';
+
+$height: 60px;
+$background-color: $primary-color;
+$text-color: $primary-text;
+
+.mainMenu {
+    height: $height;
+    width: 100%;
+    color: $text-color;
+    background-color: $background-color;
+    position: fixed;
 }

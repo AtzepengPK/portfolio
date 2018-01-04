@@ -27,10 +27,9 @@
     </div>
 </div> -->
 
-
-<div [className]="section.configuration.className" *ngFor="let section of scrollable.sections">
-    {{section | json}}
-    <div *ngFor="let details of section.details">
+<div [style.overflow-y]="scrollable.overflowStatus" [className]="section.configuration.className" *ngFor="let section of scrollable.sections"
+    portfolioScrollFixed [scrollSelector]="selector">
+    <div [className]="details.configuration.className" *ngFor="let details of section.details">
         {{details | json}}
     </div>
 </div>

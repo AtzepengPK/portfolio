@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener, Input, ElementRef } from '@angular/cor
 import * as $ from 'jquery';
 import { Scrollable } from './scrollable.class';
 import { MainSection, MainSectionConfig } from './mainSection.class';
-import { DetailSection } from './detailSection.class';
+import { DetailSection, DetailSectionConfig } from './detailSection.class';
 
 @Component({
   selector: 'portfolio-scrollable',
@@ -16,22 +16,22 @@ export class ScrollableComponent implements OnInit {
   el: Element;
   child: Element;
 
-  scrollable: Scrollable = new Scrollable();
+  scrollable: Scrollable;
 
   constructor(private myElement: ElementRef) {
     this.el = this.myElement.nativeElement as HTMLElement;
-    this.scrollable.addSection(new MainSection([
-      new DetailSection(1, '1'),
-      new DetailSection(2, '2'),
-      new DetailSection(3, '3'),
-      new DetailSection(4, '4')])
-    );
-    this.scrollable.addSection(new MainSection([
-      new DetailSection(1, '1'),
-      new DetailSection(2, '2'),
-      new DetailSection(3, '3'),
-      new DetailSection(4, '4')], new MainSectionConfig('mainSectionAlternative'))
-    );
+    this.scrollable = new Scrollable([
+      new MainSection([
+        new DetailSection(1, '1', new DetailSectionConfig('detailSectionAlternative')),
+        new DetailSection(2, '2'),
+        new DetailSection(3, '3', new DetailSectionConfig('detailSectionAlternative')),
+        new DetailSection(4, '4')]),
+      new MainSection([
+        new DetailSection(1, '1'),
+        new DetailSection(2, '2'),
+        new DetailSection(3, '3'),
+        new DetailSection(4, '4')], new MainSectionConfig('mainSectionAlternative'))
+    ]);
 
     console.log(this.scrollable);
   }
