@@ -1,0 +1,28 @@
+<div id="id1" style="height:100%; overflow-y:hidden" Scrollfixed [scrollSelector]="selector">
+    <div class="mainSection" style="height:100%; flex-wrap: wrap" fxLayout>
+        <div fxFlex="50" fxFlexOrder="1">1 </div>
+        <div fxFlex="50" fxFlexOrder="2">
+            <div id="id2" style="overflow-y:scroll; height:100%" fxLayoutWrap Scrollfixed scrollSelector="singleElement">
+                <div class="singleElement" style="height:50%;" fxFlex="50" fxFlexOrder="1">2</div>
+                <div class="singleElement" style="height:50%;" fxFlex="50" fxFlexOrder="2">3</div>
+                <div class="singleElement" style="height:50%;" fxFlex="50" fxFlexOrder="3">4</div>
+                <div class="singleElement" style="height:50%;" fxFlex="50" fxFlexOrder="4">5</div>
+                <div class="singleElement" style="height:50%;" fxFlex="50" fxFlexOrder="5">6</div>
+                <div class="singleElement" style="height:50%;" fxFlex="50" fxFlexOrder="6">7</div>
+                <div class="singleElement" style="height:50%;" fxFlex="50" fxFlexOrder="7">8</div>
+                <div class="singleElement" style="height:50%;" fxFlex="50" fxFlexOrder="8">9</div>
+            </div>
+        </div>
+    </div>
+    <div class="mainSection" style="height:100%; flex-wrap: wrap" fxLayout>
+        <div fxFlex="50" fxFlexOrder="1">2 </div>
+        <div fxFlex="50" fxFlexOrder="2">
+            <div style="overflow-y:scroll; height:100%" fxLayoutWrap Scrollfixed scrollSelector="singleElement">
+                <div style="height:200px;" fxFlex="50" fxFlexOrder="1">2</div>
+                <div style="height:200px;" fxFlex="50" fxFlexOrder="2">3</div>
+                <div style="height:200px;" fxFlex="50" fxFlexOrder="3">4</div>
+                <div style="height:200px;" fxFlex="50" fxFlexOrder="4">5</div>
+            </div>
+        </div>
+    </div>
+</div>
