@@ -1,5 +1,8 @@
 import { Component, OnInit, HostListener, Input, ElementRef } from '@angular/core';
 import * as $ from 'jquery';
+import { Scrollable } from './scrollable.class';
+import { MainSection, MainSectionConfig } from './mainSection.class';
+import { DetailSection, DetailSectionConfig } from './detailSection.class';
 
 @Component({
   selector: 'portfolio-scrollable',
@@ -9,16 +12,32 @@ import * as $ from 'jquery';
 export class ScrollableComponent implements OnInit {
 
   @Input()
-  selector: String = "mainSection";
+  selector: String = 'mainSection';
   el: Element;
   child: Element;
 
+  scrollable: Scrollable;
+
   constructor(private myElement: ElementRef) {
     this.el = this.myElement.nativeElement as HTMLElement;
+    this.scrollable = new Scrollable([
+      new MainSection([
+        new DetailSection(1, '1', new DetailSectionConfig('detailSectionAlternative')),
+        new DetailSection(2, '2'),
+        new DetailSection(3, '3', new DetailSectionConfig('detailSectionAlternative')),
+        new DetailSection(4, '4')]),
+      new MainSection([
+        new DetailSection(1, '1'),
+        new DetailSection(2, '2'),
+        new DetailSection(3, '3'),
+        new DetailSection(4, '4')], new MainSectionConfig('mainSectionAlternative'))
+    ]);
+
+    console.log(this.scrollable);
   }
 
   ngOnInit() {
-    console.log("input1 " + this.selector);
+    console.log('input1 ' + this.selector);
     console.log(this.myElement);
     this.child = this.el.firstChild as Element;
 

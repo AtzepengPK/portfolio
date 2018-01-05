@@ -1,13 +1,20 @@
 import { Directive, ElementRef, Renderer, HostListener, Input, AfterViewInit } from '@angular/core';
 import { AnimationBuilder, trigger, state, style, transition, animate } from '@angular/animations';
-import { Subject } from 'rxjs';
+// tslint:disable-next-line:import-blacklist
+import { Subject } from 'rxjs/Rx';
 import * as $ from 'jquery';
 
+/**
+ * Directive that bla bla
+ * @export
+ * @class ScrollfixedDirective
+ * @implements {AfterViewInit}
+ */
 @Directive({
-  selector: '[Scrollfixed]',
+  selector: '[portfolioScrollFixed]',
 })
 export class ScrollfixedDirective implements AfterViewInit {
-  @Input('scrollSelector') selector: string;
+  @Input() scrollSelector: string;
 
   private objs: NodeListOf<Element>;
   private resizeSubject = new Subject<Event>();
@@ -17,11 +24,11 @@ export class ScrollfixedDirective implements AfterViewInit {
   private posOld = 0;
 
   constructor(private el: ElementRef) {
-    this.resizeObservable.subscribe(x => this.onScrollLogic(x, this.selector));
+    this.resizeObservable.subscribe(x => this.onScrollLogic(x, this.scrollSelector));
   }
 
   ngAfterViewInit(): void {
-    this.objs = document.getElementsByClassName(this.selector);
+    this.objs = document.getElementsByClassName(this.scrollSelector);
   }
 
   @HostListener('scroll', ['$event']) private onScroll(event: Event): void {
@@ -30,14 +37,14 @@ export class ScrollfixedDirective implements AfterViewInit {
 
   private onScrollLogic(event: Event, sel: string) {
 
-    let isMain = sel == "mainSection" ? true : false;
+    const isMain = sel === 'mainSection' ? true : false;
 
-    let posNew = $(event.srcElement).scrollTop();
+    const posNew = $(event.srcElement).scrollTop();
     console.log(posNew);
 
-    let dir: boolean = posNew >= this.posOld ? true : false;
+    const dir: boolean = posNew >= this.posOld ? true : false;
     let outer;
-    let animate: boolean = false;
+    let doAnimate = false;
 
     if (dir) {
       if (this.i < (this.objs.length - 1)) {
@@ -45,27 +52,27 @@ export class ScrollfixedDirective implements AfterViewInit {
           this.i++;
         }
         this.i++;
-        console.log("giu");
+        console.log('giu');
         outer = jQuery(this.objs[this.i]).outerHeight() + 1;
-        animate = true;
+        doAnimate = true;
       } else {
-        animate = false;
+        doAnimate = false;
       }
     } else {
-      if (this.i != 0) {
+      if (this.i !== 0) {
         if (!isMain) {
           this.i--;
         }
         this.i--;
-        console.log("su");
+        console.log('su');
         outer = (jQuery(this.objs[this.i]).outerHeight() * -1) - 1;
-        animate = true;
+        doAnimate = true;
       } else {
-        animate = false;
+        doAnimate = false;
       }
     }
 
-    if (animate) {
+    if (doAnimate) {
       this.posOld += outer;
 
       jQuery(this.el.nativeElement).stop().animate({

@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild, AfterViewInit } from '@angular/core';
 import { ObservableMedia } from '@angular/flex-layout';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 import { ScrollableComponent } from '../scrollable/scrollable.component';
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/takeWhile";
-import "rxjs/add/operator/startWith";
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/takeWhile';
+import 'rxjs/add/operator/startWith';
 
 @Component({
   selector: 'portfolio-home',
@@ -56,13 +56,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {
 
-    let currPos: number = document.documentElement.scrollTop + 80;
+    const currPos: number = document.documentElement.scrollTop + 80;
     console.log(currPos);
-    let a = this.scrollable.el.firstChild as HTMLElement;
+    const a = this.scrollable.el.firstChild as HTMLElement;
     if (currPos >= this.mainPageContainerOffsetY) {
-      a.setAttribute("style", "height:100%;overflow-y:scroll");
+      /* document.documentElement.scrollTop = 220; */
+      a.setAttribute('style', 'height:100%;overflow-y:scroll');
     } else {
-      a.setAttribute("style", "height:100%;overflow-y:hidden");
+      a.setAttribute('style', 'height:100%;overflow-y:hidden');
     }
 
   }
