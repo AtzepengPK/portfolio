@@ -1,13 +1,11 @@
 @import 'globalVars';
 
-$height: 60px;
-$background-color: $primary-color;
-$text-color: $primary-text;
+/* $background-color: $primary-color;
+$text-color: $primary-text; */
 
 .mainMenu {
-    height: $height;
+    height: $menu-height;
     width: 100%;
-    color: $text-color;
-    background-color: $background-color;
-    position: fixed;
+    color: $primary-text;
+    background-color: $secondary-color;
 }

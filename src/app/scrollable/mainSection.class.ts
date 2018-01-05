@@ -2,10 +2,12 @@ import { DetailSection } from './detailSection.class';
 
 export class MainSection {
 
+    private content: string;
     private details: DetailSection[];
     private configuration;
 
-    constructor(details: DetailSection[] = [], config: MainSectionConfig = new MainSectionConfig()) {
+    constructor(content: string, details: DetailSection[] = [], config: MainSectionConfig = new MainSectionConfig()) {
+        this.content = content;
         this.details = details;
         this.configuration = config;
     }
@@ -13,14 +15,12 @@ export class MainSection {
     public addDetail(detail: DetailSection) {
         this.details.push(detail);
     }
-
 }
 
 export class MainSectionConfig {
-    private className;
+    private contentClassName;
 
-    constructor(className: string = 'mainSection') {
-        this.className = className;
+    constructor(contentClassName: string = 'mainContent') {
+        this.contentClassName = contentClassName;
     }
-
 }

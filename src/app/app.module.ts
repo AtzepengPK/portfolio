@@ -13,6 +13,7 @@ import { ScrollfixedDirective } from './scrollfixed/scrollfixed.directive';
 import { ScrollableComponent } from './scrollable/scrollable.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MenuComponent } from './menu/menu.component';
     ScrollfixedDirective,
     ScrollableComponent,
     HeaderComponent,
-    MenuComponent
+    MenuComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

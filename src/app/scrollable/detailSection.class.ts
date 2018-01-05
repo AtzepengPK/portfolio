@@ -9,10 +9,10 @@ export class DetailSection {
 }
 
 export class DetailSectionConfig {
-    private className;
+    private detailClassName;
 
-    constructor(className: string = 'detailSection') {
-        this.className = className;
+    constructor(detailClassName: string = 'detail') {
+        this.detailClassName = detailClassName;
     }
 
 }

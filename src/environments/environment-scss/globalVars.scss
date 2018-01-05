@@ -1,5 +1,14 @@
-$primary-color: #f5f5f5;
+$primary-color: #ffffff;
 $primary-text: #000000;
 
 $secondary-color: #424242;
 $secondary-text: #ffffff;
+
+$light-gray: #f3f3f3;
+
+
+// Menu
+$menu-height: 60px;
+
+// Scrollable
+$scrollable-container-height: calc(100vh - #{$menu-height});

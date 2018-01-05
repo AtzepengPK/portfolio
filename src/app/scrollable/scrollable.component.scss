@@ -1,21 +1,31 @@
+@import 'globalVars';
+
 ::-webkit-scrollbar {
     display: none;
 }
 
-.mainSectionAlternative {
-    color: yellow;
+.scrollableContainer{
+    height: $scrollable-container-height;
+    width:100vw;
+    background-color: $primary-color;
 }
 
 .mainSection {
-    height:100%;
-    color: brown;
-    background-color: #f5f5f5;
+    height: $scrollable-container-height;
+    flex-wrap: wrap;
 }
 
-.detailSection {
+.detailContainer {
+    overflow-y:scroll;
+    height:100%
+}
+
+.mainContent{
+    background-color: $primary-color;
+}
+
+.detail {
+    height:50%;
     color: darkblue;
-}
-
-.detailSectionAlternative {
-    color: deeppink;
+    background-color: $light-gray;
 }

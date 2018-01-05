@@ -4,12 +4,6 @@ import { AnimationBuilder, trigger, state, style, transition, animate } from '@a
 import { Subject } from 'rxjs/Rx';
 import * as $ from 'jquery';
 
-/**
- * Directive that bla bla
- * @export
- * @class ScrollfixedDirective
- * @implements {AfterViewInit}
- */
 @Directive({
   selector: '[portfolioScrollFixed]',
 })
@@ -40,7 +34,6 @@ export class ScrollfixedDirective implements AfterViewInit {
     const isMain = sel === 'mainSection' ? true : false;
 
     const posNew = $(event.srcElement).scrollTop();
-    console.log(posNew);
 
     const dir: boolean = posNew >= this.posOld ? true : false;
     let outer;

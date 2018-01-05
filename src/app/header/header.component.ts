@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'portfolio-header',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @ViewChild(MenuComponent) menu: MenuComponent;
 
   constructor() { }
 

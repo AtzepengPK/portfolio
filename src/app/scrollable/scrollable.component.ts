@@ -20,17 +20,24 @@ export class ScrollableComponent implements OnInit {
 
   constructor(private myElement: ElementRef) {
     this.el = this.myElement.nativeElement as HTMLElement;
+
+    let baseDiv = '<div>ciaoo</div>';
+
     this.scrollable = new Scrollable([
-      new MainSection([
-        new DetailSection(1, '1', new DetailSectionConfig('detailSectionAlternative')),
-        new DetailSection(2, '2'),
-        new DetailSection(3, '3', new DetailSectionConfig('detailSectionAlternative')),
-        new DetailSection(4, '4')]),
-      new MainSection([
+      new MainSection(baseDiv, [
         new DetailSection(1, '1'),
         new DetailSection(2, '2'),
         new DetailSection(3, '3'),
-        new DetailSection(4, '4')], new MainSectionConfig('mainSectionAlternative'))
+        new DetailSection(4, '4'),
+        new DetailSection(5, '5'),
+        new DetailSection(6, '6'),
+        new DetailSection(7, '7'),
+        new DetailSection(8, '8')]),
+      new MainSection(baseDiv, [
+        new DetailSection(1, '1'),
+        new DetailSection(2, '2'),
+        new DetailSection(3, '3'),
+        new DetailSection(4, '4')])
     ]);
 
     console.log(this.scrollable);

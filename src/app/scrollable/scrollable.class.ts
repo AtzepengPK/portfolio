@@ -4,8 +4,7 @@ export class Scrollable {
 
     private sections: MainSection[];
 
-    overflowStatus: string = this.getOverflowStatus();
-    color: string = this.getColor();
+    overflowStatus: string = "hidden";
 
     constructor(sections: MainSection[] = []) {
         this.sections = sections;
@@ -15,12 +14,11 @@ export class Scrollable {
         this.sections.push(section);
     }
 
-    getOverflowStatus(): string {
-        return 'scroll';
+    setOverflowScroll() {
+        this.overflowStatus = "scroll";
     }
 
-    getColor(): string {
-        return 'red';
+    setOverflowHidden() {
+        this.overflowStatus = "hidden";
     }
-
 }

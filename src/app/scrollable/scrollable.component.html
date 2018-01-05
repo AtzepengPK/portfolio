@@ -27,9 +27,16 @@
     </div>
 </div> -->
 
-<div [style.overflow-y]="scrollable.overflowStatus" [className]="section.configuration.className" *ngFor="let section of scrollable.sections"
-    portfolioScrollFixed [scrollSelector]="selector">
-    <div [className]="details.configuration.className" *ngFor="let details of section.details">
-        {{details | json}}
+<div [style.overflow-y]="scrollable.overflowStatus" class="scrollableContainer" portfolioScrollFixed [scrollSelector]="selector">
+    <div class="mainSection" *ngFor="let section of scrollable.sections" fxLayout>
+
+        <div [className]="section.configuration.contentClassName" [innerHtml]="section.content" fxFlex="50" fxFlexOrder="1"></div>
+
+        <div fxFlex="50" fxFlexOrder="2">
+            <div [style.overflow-y]="scrollable.overflowStatus" class="detailContainer" fxLayoutWrap portfolioScrollFixed scrollSelector="detail">
+                <div class="detail" [innerHtml]="detail.content" [fxFlexOrder]="detail.order" *ngFor="let detail of section.details" fxFlex="50">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
