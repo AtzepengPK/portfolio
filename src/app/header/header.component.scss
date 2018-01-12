@@ -1,20 +1,33 @@
 @import 'globalVars';
 
 $height: 300px;
-$background-color: $secondary-color;
-$text-color: $secondary-text;
+
+.parallax-wrapper{
+    padding-top:60px;
+    height: $height;
+}
 
 .parallax {
-    margin-top:60px;
-    /* The image used */
-
-    background-image: url('http://orlandofamilyphysicians.com/wp-content/uploads/2016/12/placeholder-600x400.png');
-    /* Set a specific height */
-    height: $height;
-    color: $text-color;
+    height: 100%;
+    /* The image used */  
+    background-color: $secondary-color;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.parallax-text{
+    height: 100%;
+    color: $secondary-text;
+
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+    
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
 }

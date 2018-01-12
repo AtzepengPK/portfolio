@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, trigger,
+  Component, OnInit, HostListener, trigger,
   state,
   style,
   transition,
@@ -14,11 +14,13 @@ import {
     trigger('scrollOverHeader', [
       state('white', style({
         backgroundColor: '#fff',
+        color: '#424242',
         position: 'fixed',
-        top:0
+        top: 0
       })),
       state('black', style({
         backgroundColor: '#424242',
+        color: '#fff',
         position: 'absolute',
         top: 0
       })),
@@ -36,12 +38,27 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  toogleState() {
+    this.state = this.state == 'black' ? 'white' : 'black'
+  }
   makeWhite() {
     this.state = "white";
   }
 
   makeBlack() {
     this.state = "black";
+  }
+
+  @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {
+    const currPos: number = document.documentElement.scrollTop;
+
+    if (currPos >= 200) {
+      if (this.state !== 'white')
+        this.toogleState();
+    } else {
+      if (this.state !== 'black')
+        this.toogleState();
+    }
   }
 
 }

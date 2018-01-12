@@ -1,26 +1,21 @@
-import { Component, OnInit, HostListener, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, HostListener, Input, ElementRef, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
-import { Scrollable } from './scrollable.class';
-import { MainSection, MainSectionConfig } from './mainSection.class';
-import { DetailSection, DetailSectionConfig } from './detailSection.class';
+import { Scrollable } from './classes/scrollable.class';
+import { MainSection, MainSectionConfig } from './classes/mainSection.class';
+import { DetailSection, DetailSectionConfig } from './classes/detailSection.class';
 
 @Component({
   selector: 'portfolio-scrollable',
   templateUrl: './scrollable.component.html',
   styleUrls: ['./scrollable.component.scss'],
 })
-export class ScrollableComponent implements OnInit {
+export class ScrollableComponent implements OnInit, AfterViewInit {
 
-  @Input()
-  selector: String = 'mainSection';
-  el: Element;
-  child: Element;
-
+  private mainPageContainer: HTMLElement;
+  private mainPageContainerOffsetY: number;
   scrollable: Scrollable;
 
   constructor(private myElement: ElementRef) {
-    this.el = this.myElement.nativeElement as HTMLElement;
-
     let baseDiv = '<div>ciaoo</div>';
 
     this.scrollable = new Scrollable([
@@ -43,11 +38,27 @@ export class ScrollableComponent implements OnInit {
     console.log(this.scrollable);
   }
 
-  ngOnInit() {
-    console.log('input1 ' + this.selector);
-    console.log(this.myElement);
-    this.child = this.el.firstChild as Element;
+  ngAfterViewInit(): void {
+    this.mainPageContainer = this.myElement.nativeElement.firstElementChild;
+    this.mainPageContainerOffsetY = this.mainPageContainer.offsetTop;
+  }
 
+  ngOnInit() {
+
+  }
+
+  @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {
+    const currPos: number = document.documentElement.scrollTop;
+
+    if (currPos >= (this.mainPageContainerOffsetY - 140) && currPos <= (this.mainPageContainerOffsetY - 100)) {
+      if (this.scrollable.overflowStatus != 'scroll') {
+        this.scrollable.setOverflowScroll();
+        document.documentElement.scrollTop = (this.mainPageContainerOffsetY - 120);
+      }
+    } else {
+      if (this.scrollable.overflowStatus != 'hidden')
+        this.scrollable.setOverflowHidden();
+    }
   }
 
 }

@@ -12,7 +12,7 @@ export class ScrollfixedDirective implements AfterViewInit {
 
   private objs: NodeListOf<Element>;
   private resizeSubject = new Subject<Event>();
-  private resizeObservable = this.resizeSubject.asObservable().throttleTime(1100);
+  private resizeObservable = this.resizeSubject.asObservable().throttleTime(1000);
 
   private i = 0;
   private posOld = 0;
@@ -33,7 +33,9 @@ export class ScrollfixedDirective implements AfterViewInit {
 
     const isMain = sel === 'mainSection' ? true : false;
 
-    const posNew = $(event.srcElement).scrollTop();
+    const posNew = document.documentElement.scrollTop;
+    
+    /* $(event.srcElement).scrollTop(); */
 
     const dir: boolean = posNew >= this.posOld ? true : false;
     let outer;
@@ -45,7 +47,6 @@ export class ScrollfixedDirective implements AfterViewInit {
           this.i++;
         }
         this.i++;
-        console.log('giu');
         outer = jQuery(this.objs[this.i]).outerHeight() + 1;
         doAnimate = true;
       } else {
@@ -57,7 +58,6 @@ export class ScrollfixedDirective implements AfterViewInit {
           this.i--;
         }
         this.i--;
-        console.log('su');
         outer = (jQuery(this.objs[this.i]).outerHeight() * -1) - 1;
         doAnimate = true;
       } else {
@@ -70,10 +70,8 @@ export class ScrollfixedDirective implements AfterViewInit {
 
       jQuery(this.el.nativeElement).stop().animate({
         scrollTop: this.posOld
-      }, 1000);
+      }, 900);
     }
-
-    console.log(this.posOld);
   }
 
 
