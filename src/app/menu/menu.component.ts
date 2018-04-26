@@ -6,6 +6,12 @@ import {
   animate,
   keyframes
 } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth} from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+import { FirebaseApp } from 'angularfire2';
+
+
 @Component({
   selector: 'portfolio-menu',
   templateUrl: './menu.component.html',
@@ -27,16 +33,33 @@ import {
       transition('black => white', animate('100ms linear')),
       transition('white => black', animate('100ms linear'))
     ]),
+    trigger('scrollOverHeaderText', [
+      state('white', style({
+        color: '#424242'
+      })),
+      state('black', style({
+        color: '#fff'
+      }))
+    ])
   ]
 })
 export class MenuComponent implements OnInit {
 
   state: string = 'black';
+  coursesObservable: Observable<any[]>;
 
-  constructor() { }
+  constructor(private db: AngularFireDatabase, private _firebaseAuth: AngularFireAuth) { }
 
   ngOnInit() {
+    this._firebaseAuth.auth.signInAnonymously();
+    this.coursesObservable = this.getCourses('/menu');
   }
+
+  getCourses(listPath): Observable<any[]> {
+
+    return this.db.list(listPath).valueChanges();
+  }
+
 
   toogleState() {
     this.state = this.state == 'black' ? 'white' : 'black'
@@ -53,12 +76,13 @@ export class MenuComponent implements OnInit {
     const currPos: number = document.documentElement.scrollTop;
 
     if (currPos >= 200) {
-      if (this.state !== 'white')
+      if (this.state !== 'white') {
         this.toogleState();
+      }
     } else {
-      if (this.state !== 'black')
+      if (this.state !== 'black') {
         this.toogleState();
+      }
     }
   }
-
 }

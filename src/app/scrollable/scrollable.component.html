@@ -1,11 +1,10 @@
-<div [style.overflow-y]="scrollable.overflowStatus" class="scrollableContainer" portfolioScrollFixed scrollSelector="mainSection">
-    <div class="mainSection" *ngFor="let section of scrollable.sections" fxLayout>
-
-        <div [className]="section.configuration.contentClassName" [innerHtml]="section.content" fxFlex="50" fxFlexOrder="1"></div>
+<div [style.overflow-y]="overflowStatus" class="scrollableContainer" portfolioScrollFixed scrollSelector="mainSection">
+    <div class="mainSection" *ngFor="let section of scrollableObservable | async" fxLayout>
+        <div [className]="section.configuration.contentClassName" [innerHtml]="section.html" fxFlex="50" fxFlexOrder="1"></div>
 
         <div fxFlex="50" fxFlexOrder="2">
-            <div [style.overflow-y]="scrollable.overflowStatus" class="detailContainer" fxLayoutWrap portfolioScrollFixed scrollSelector="detail">
-                <div class="detail" [innerHtml]="detail.content" [fxFlexOrder]="detail.order" *ngFor="let detail of section.details" fxFlex="50">
+            <div [style.overflow-y]="overflowStatus" class="detailContainer" fxLayoutWrap portfolioScrollFixed scrollSelector="detail">
+                <div class="detail" *ngFor="let detail of section.sections" [innerHtml]="detail.html" [fxFlexOrder]="detail.order"  fxFlex="50">
                 </div>
             </div>
         </div>

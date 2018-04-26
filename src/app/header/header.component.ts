@@ -22,30 +22,32 @@ export class HeaderComponent implements OnInit {
   constructor(public renderer: Renderer) { }
 
   ngOnInit() {
-    this.parallax = document.getElementById("textParallax");
+    this.parallax = document.getElementById('textParallax');
   }
 
   setTranslateY() {
     let scrollTop = document.documentElement.scrollTop;
     if (scrollTop < 300) {
-      let scrollRatio = ((scrollTop / 2));
-      let opacityRatio = this.getScrollRatio(scrollTop);
+      const scrollRatio = ((scrollTop / 2));
+      const opacityRatio = this.getScrollRatio(scrollTop);
 
-      let style = {
+      const textStyle = {
         'opacity': opacityRatio,
         'transform': 'translateY(' + scrollRatio + 'px)'
       };
-      return style;
+      return textStyle;
     }
 
 
   }
 
   getScrollRatio(x) {
-    if (x < 120) {
+    if (x < 100) {
       return 1;
-    } else if (x >= 140 && x <= 200) {
+    } else if (x >= 120 && x <= 139) {
       return 0.6;
+    } else if (x >= 140 && x <= 200) {
+      return 0.4;
     } else if (x > 200) {
       return 0.2;
     }

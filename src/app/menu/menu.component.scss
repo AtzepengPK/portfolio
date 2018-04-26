@@ -1,9 +1,39 @@
 @import 'globalVars';
-
 /* $background-color: $primary-color;
 $text-color: $primary-text; */
 
 .mainMenu {
     height: $menu-height;
     width: 100%;
+}
+
+ul {
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    text-align: center;
+    li {
+        float: left;
+        height: 100%;
+        a {
+            color: #fff;
+            display: block;
+            line-height: 52px;
+            text-decoration: none;
+            padding: 0 20px;
+            transition-property:opacity;
+            transition-duration: .3s;
+
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+}
+
+.selected{
+    border-bottom: 1px solid white;
 }

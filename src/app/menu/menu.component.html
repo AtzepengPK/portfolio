@@ -1,1 +1,7 @@
-<div [@scrollOverHeader]= "state" class="mainMenu">menu</div>
+<div [@scrollOverHeader]="state" class="mainMenu">
+    <ul>
+        <li *ngFor="let course of coursesObservable | async">
+            <a [@scrollOverHeaderText]="state" class="selected" href="{{course.url}}">{{course.title}}</a>
+        </li>      
+    </ul>
+</div>

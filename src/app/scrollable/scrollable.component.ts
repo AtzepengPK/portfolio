@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener, Input, ElementRef, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
-import { Scrollable } from './classes/scrollable.class';
-import { MainSection, MainSectionConfig } from './classes/mainSection.class';
-import { DetailSection, DetailSectionConfig } from './classes/detailSection.class';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'portfolio-scrollable',
@@ -13,29 +13,10 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
 
   private mainPageContainer: HTMLElement;
   private mainPageContainerOffsetY: number;
-  scrollable: Scrollable;
+  scrollableObservable: Observable<any[]>;
+  private overflowStatus: String;
 
-  constructor(private myElement: ElementRef) {
-    let baseDiv = '<div>ciaoo</div>';
-
-    this.scrollable = new Scrollable([
-      new MainSection(baseDiv, [
-        new DetailSection(1, '1'),
-        new DetailSection(2, '2'),
-        new DetailSection(3, '3'),
-        new DetailSection(4, '4'),
-        new DetailSection(5, '5'),
-        new DetailSection(6, '6'),
-        new DetailSection(7, '7'),
-        new DetailSection(8, '8')]),
-      new MainSection(baseDiv, [
-        new DetailSection(1, '1'),
-        new DetailSection(2, '2'),
-        new DetailSection(3, '3'),
-        new DetailSection(4, '4')])
-    ]);
-
-    console.log(this.scrollable);
+  constructor(private myElement: ElementRef, private db: AngularFireDatabase, private _firebaseAuth: AngularFireAuth) {
   }
 
   ngAfterViewInit(): void {
@@ -44,20 +25,28 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this._firebaseAuth.auth.signInAnonymously();
+    this.scrollableObservable = this.getScrollable('/scrollable');
+    this.scrollableObservable.subscribe(value => console.log(value));
+  }
 
+  getScrollable(listPath): Observable<any[]> {
+
+    return this.db.list(listPath).valueChanges();
   }
 
   @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {
     const currPos: number = document.documentElement.scrollTop;
 
     if (currPos >= (this.mainPageContainerOffsetY - 140) && currPos <= (this.mainPageContainerOffsetY - 100)) {
-      if (this.scrollable.overflowStatus != 'scroll') {
-        this.scrollable.setOverflowScroll();
+      if (this.overflowStatus !== 'scroll') {
+        this.overflowStatus = 'scroll';
         document.documentElement.scrollTop = (this.mainPageContainerOffsetY - 120);
       }
     } else {
-      if (this.scrollable.overflowStatus != 'hidden')
-        this.scrollable.setOverflowHidden();
+      if (this.overflowStatus !== 'hidden') {
+        this.overflowStatus = 'hidden';
+      }
     }
   }
 
