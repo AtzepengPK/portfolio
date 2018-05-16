@@ -1,13 +1,13 @@
 @import 'globalVars';
-
 ::-webkit-scrollbar {
     display: none;
 }
 
-.scrollableContainer{
+.scrollableContainer {
     height: $scrollable-container-height;
-    width:100vw;
+    width: 100vw;
     background-color: $primary-color;
+    position: relative;
 }
 
 .mainSection {
@@ -16,16 +16,16 @@
 }
 
 .detailContainer {
-    overflow-y:scroll;
-    height:100%
+    overflow-y: scroll;
+    height: 100%
 }
 
-.mainContent{
+.mainContent {
     background-color: $primary-color;
 }
 
 .detail {
-    height:50%;
+    height: 50%;
     color: darkblue;
     background-color: $light-gray;
 }

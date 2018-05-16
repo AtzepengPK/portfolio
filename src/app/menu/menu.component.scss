@@ -5,6 +5,7 @@ $text-color: $primary-text; */
 .mainMenu {
     height: $menu-height;
     width: 100%;
+    z-index: 1;
 }
 
 ul {

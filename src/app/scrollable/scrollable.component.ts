@@ -1,8 +1,7 @@
 import { Component, OnInit, HostListener, Input, ElementRef, AfterViewInit } from '@angular/core';
 import * as $ from 'jquery';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'portfolio-scrollable',
@@ -15,8 +14,9 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
   private mainPageContainerOffsetY: number;
   scrollableObservable: Observable<any[]>;
   private overflowStatus: String;
+  private menuHeight = 60;
 
-  constructor(private myElement: ElementRef, private db: AngularFireDatabase, private _firebaseAuth: AngularFireAuth) {
+  constructor(private myElement: ElementRef, private _data: DataService) {
   }
 
   ngAfterViewInit(): void {
@@ -25,23 +25,17 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this._firebaseAuth.auth.signInAnonymously();
-    this.scrollableObservable = this.getScrollable('/scrollable');
-    this.scrollableObservable.subscribe(value => console.log(value));
-  }
-
-  getScrollable(listPath): Observable<any[]> {
-
-    return this.db.list(listPath).valueChanges();
+    this.scrollableObservable = this._data.getScrollable();
   }
 
   @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {
     const currPos: number = document.documentElement.scrollTop;
 
-    if (currPos >= (this.mainPageContainerOffsetY - 140) && currPos <= (this.mainPageContainerOffsetY - 100)) {
+    if (currPos >= (this.mainPageContainerOffsetY - (this.menuHeight + 20)) &&
+      currPos <= (this.mainPageContainerOffsetY - (this.menuHeight - 20))) {
       if (this.overflowStatus !== 'scroll') {
         this.overflowStatus = 'scroll';
-        document.documentElement.scrollTop = (this.mainPageContainerOffsetY - 120);
+        document.documentElement.scrollTop = (this.mainPageContainerOffsetY - this.menuHeight);
       }
     } else {
       if (this.overflowStatus !== 'hidden') {

@@ -7,9 +7,8 @@ import {
   keyframes
 } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuth} from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-import { FirebaseApp } from 'angularfire2';
+import { DataService } from '../data.service';
 
 
 @Component({
@@ -45,31 +44,24 @@ import { FirebaseApp } from 'angularfire2';
 })
 export class MenuComponent implements OnInit {
 
-  state: string = 'black';
-  coursesObservable: Observable<any[]>;
+  state = 'black';
+  menuItems: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase, private _firebaseAuth: AngularFireAuth) { }
+  constructor(private _data: DataService) { }
 
   ngOnInit() {
-    this._firebaseAuth.auth.signInAnonymously();
-    this.coursesObservable = this.getCourses('/menu');
+    this.menuItems = this._data.getMenuItems();
   }
-
-  getCourses(listPath): Observable<any[]> {
-
-    return this.db.list(listPath).valueChanges();
-  }
-
 
   toogleState() {
-    this.state = this.state == 'black' ? 'white' : 'black'
+    this.state = this.state === 'black' ? 'white' : 'black';
   }
   makeWhite() {
-    this.state = "white";
+    this.state = 'white';
   }
 
   makeBlack() {
-    this.state = "black";
+    this.state = 'black';
   }
 
   @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {

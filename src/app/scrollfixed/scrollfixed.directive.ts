@@ -31,6 +31,7 @@ export class ScrollfixedDirective implements AfterViewInit {
 
   private onScrollLogic(event: Event, sel: string) {
 
+    console.log(event);
     const posNew = $(event.srcElement).scrollTop();
     const isMain = sel === 'mainSection' ? true : false;
     const dir: boolean = posNew >= this.posOld ? true : false;
