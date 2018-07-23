@@ -40,7 +40,11 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
 
     if (currPos >= (this.mainPageContainerOffsetY - (this.menuHeight + 20)) &&
       currPos <= (this.mainPageContainerOffsetY - (this.menuHeight - 20))) {
-      if (this.overflowStatus !== 'scroll') {
+        if(!this.isEnabled){
+          this.ScrollableService.isEnabled.emit(true);
+        }
+        if (this.overflowStatus !== 'scroll') {
+        
         this.overflowStatus = 'scroll';
         document.documentElement.scrollTop = (this.mainPageContainerOffsetY - this.menuHeight);
       }

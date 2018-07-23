@@ -27,49 +27,49 @@ export class ScrollfixedDirective implements AfterViewInit {
   }
 
   @HostListener('scroll', ['$event']) private onScroll(event: Event): void {
-    if(this.enabled){
-      this.resizeSubject.next(event);
-    }
+    this.resizeSubject.next(event);
   }
 
   private onScrollLogic(event: Event, sel: string) {
-    console.log(this.enabled);
+    if (this.enabled) {
+      console.log(this.enabled);
 
-    const posNew = $(event.srcElement).scrollTop();
-    const isMain = sel === 'mainSection' ? true : false;
-    const dir: boolean = posNew >= this.posOld ? true : false;
-    let outer;
-    let doAnimate = false;
+      const posNew = $(event.srcElement).scrollTop();
+      const isMain = sel === 'mainSection' ? true : false;
+      const dir: boolean = posNew >= this.posOld ? true : false;
+      let outer;
+      let doAnimate = false;
 
-    if (dir) {
-      if (this.i < (this.objs.length - 1)) {
-        if (!isMain) {
+      if (dir) {
+        if (this.i < (this.objs.length - 1)) {
+          if (!isMain) {
+            this.i++;
+          }
           this.i++;
+          outer = jQuery(this.objs[this.i]).outerHeight();
+          doAnimate = true;
+        } else {
+          doAnimate = false;
         }
-        this.i++;
-        outer = jQuery(this.objs[this.i]).outerHeight();
-        doAnimate = true;
       } else {
-        doAnimate = false;
-      }
-    } else {
-      if (this.i !== 0) {
-        if (!isMain) {
+        if (this.i !== 0) {
+          if (!isMain) {
+            this.i--;
+          }
           this.i--;
+          outer = (jQuery(this.objs[this.i]).outerHeight() * -1);
+          doAnimate = true;
+        } else {
+          doAnimate = false;
         }
-        this.i--;
-        outer = (jQuery(this.objs[this.i]).outerHeight() * -1);
-        doAnimate = true;
-      } else {
-        doAnimate = false;
       }
-    }
 
-    if (doAnimate) {
-      this.posOld += outer;
-      jQuery(this.el.nativeElement).stop().animate({
-        scrollTop: this.posOld
-      }, 900);
+      if (doAnimate) {
+        this.posOld += outer;
+        jQuery(this.el.nativeElement).stop().animate({
+          scrollTop: this.posOld
+        }, 900);
+      }
     }
   }
 }
