@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, Input, ElementRef, AfterViewInit } fro
 import * as $ from 'jquery';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../data.service';
+import { ScrollableService } from './scrollable.service';
 
 @Component({
   selector: 'portfolio-scrollable',
@@ -15,8 +16,9 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
   scrollableObservable: Observable<any[]>;
   private overflowStatus: String;
   private menuHeight = 60;
+  isEnabled: boolean;
 
-  constructor(private myElement: ElementRef, private _data: DataService) {
+  constructor(private myElement: ElementRef, private _data: DataService, private ScrollableService: ScrollableService) {
   }
 
   ngAfterViewInit(): void {
@@ -26,6 +28,11 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.scrollableObservable = this._data.getScrollable();
+    this.ScrollableService.isEnabled.emit(true);
+    this.ScrollableService.isEnabled.subscribe(
+      x => {
+        this.isEnabled=x;
+      });
   }
 
   @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {

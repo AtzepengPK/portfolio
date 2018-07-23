@@ -19,8 +19,9 @@ import { ScrollableComponent } from './scrollable/scrollable.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
-// SERVUCES
+// SERVICES
 import { DataService } from './data.service';
+import { ScrollableService } from './scrollable/scrollable.service';
 import { LateralToolbarComponent } from './lateral-toolbar/lateral-toolbar.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
@@ -48,7 +49,7 @@ import { AboutComponent } from './about/about.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [DataService],
+  providers: [DataService,ScrollableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

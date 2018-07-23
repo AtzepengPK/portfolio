@@ -9,6 +9,7 @@ import * as $ from 'jquery';
 })
 export class ScrollfixedDirective implements AfterViewInit {
   @Input() scrollSelector: string;
+  @Input() enabled: boolean;
 
   private objs: NodeListOf<Element>;
   private resizeSubject = new Subject<Event>();
@@ -26,12 +27,14 @@ export class ScrollfixedDirective implements AfterViewInit {
   }
 
   @HostListener('scroll', ['$event']) private onScroll(event: Event): void {
-    this.resizeSubject.next(event);
+    if(this.enabled){
+      this.resizeSubject.next(event);
+    }
   }
 
   private onScrollLogic(event: Event, sel: string) {
+    console.log(this.enabled);
 
-    console.log(event);
     const posNew = $(event.srcElement).scrollTop();
     const isMain = sel === 'mainSection' ? true : false;
     const dir: boolean = posNew >= this.posOld ? true : false;

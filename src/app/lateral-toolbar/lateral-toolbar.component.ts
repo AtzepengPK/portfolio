@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs/Observable';
 import { ScrollfixedDirective } from '../scrollfixed/scrollfixed.directive';
+import { ScrollableComponent } from '../scrollable/scrollable.component';
+import { ScrollableService } from '../scrollable/scrollable.service';
 
 @Component({
   selector: 'portfolio-lateral-toolbar',
@@ -12,19 +14,21 @@ export class LateralToolbarComponent implements OnInit {
 
   anchorLinks: Observable<any[]>;
 
-  constructor(private _data: DataService) {
+
+  constructor(private _data: DataService, private ScrollableService: ScrollableService) {
   }
 
   ngOnInit() {
     this.anchorLinks = this._data.getScrollable().map(
       res => {
-        return res.map(x => {
+        return res.map((x: any) => {
           return x.id;
         });
       });
   }
 
   animateTo(obj: any) {
+
     const scrollableContainer = $('#scrollableContainer');
     const objPos = $('#' + obj);
     scrollableContainer.css("overflowY", "scroll");
@@ -33,11 +37,17 @@ export class LateralToolbarComponent implements OnInit {
       scrollTop: (scrollableContainer.offset().top - 60)
     }, 600);
 
-    const scrollTo = (objPos.position().top + scrollableContainer.scrollTop());
+    if (objPos.position().top != 0) {
+      const scrollTo = (objPos.position().top + scrollableContainer.scrollTop());
 
-    jQuery(scrollableContainer).stop().animate({
-      scrollTop: scrollTo
-    }, 600);
+      this.ScrollableService.isEnabled.emit(false);
+      
+      jQuery(scrollableContainer).stop().animate({
+        scrollTop: scrollTo
+      }, 600,()=>this.ScrollableService.isEnabled.emit(true));
+    }
+
+
 
   }
 }
