@@ -1,7 +1,7 @@
 <div [@scrollOverHeader]="state" class="mainMenu">
     <ul>
         <li *ngFor="let menuItem of menuItems | async">
-            <a routerLink="{{menuItem.url}}" [@scrollOverHeaderText]="state" class="selected">{{menuItem.title}}</a>
+            <a routerLink="{{menuItem.url}}" [@scrollOverHeaderText]="state">{{menuItem.title}}</a>
         </li>
     </ul>
 </div>

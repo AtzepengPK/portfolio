@@ -24,15 +24,23 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.mainPageContainer = this.myElement.nativeElement.firstElementChild;
     this.mainPageContainerOffsetY = this.mainPageContainer.offsetTop;
+    
   }
 
   ngOnInit() {
-    this.scrollableObservable = this._data.getScrollable();
-    this.ScrollableService.isEnabled.emit(true);
+    this.scrollableObservable = this._data.getScrollable().map(
+      (data) => {
+        data.sort((a:any,b:any) => {
+          return a.order < b.order ? -1 : 1;
+        });
+        return data;
+      }
+    );
     this.ScrollableService.isEnabled.subscribe(
       x => {
         this.isEnabled=x;
       });
+      this.ScrollableService.disable();
   }
 
   @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {
@@ -49,6 +57,9 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
         document.documentElement.scrollTop = (this.mainPageContainerOffsetY - this.menuHeight);
       }
     } else {
+      if(this.isEnabled){
+        this.ScrollableService.isEnabled.emit(false);
+      }
       if (this.overflowStatus !== 'hidden') {
         this.overflowStatus = 'hidden';
       }

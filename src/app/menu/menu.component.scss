@@ -19,10 +19,11 @@ ul {
     li {
         float: left;
         height: 100%;
+        border-bottom: 1px solid;
         a {
             color: #fff;
             display: block;
-            line-height: 52px;
+            line-height: 59px;
             text-decoration: none;
             padding: 0 20px;
             transition-property:opacity;

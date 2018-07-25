@@ -1,7 +1,17 @@
 <div class="lateral-tool-bar">
+  <div class="scroll-status" (click)="toogleScroll()">
+    <i class="material-icons md-24 scroll-icon" [style.color]="scrollStatusColor">
+      view_carousel
+    </i>
+    <div [@scrollActive]="scrollStatus" class="progress-div"></div>
+  </div>
   <div class="toolbar-container vcenter">
-    <div *ngFor="let link of anchorLinks | async" (click)="animateTo(link)">
-      ciao
+    <div class="anchor-container">
+      <div class="anchor" [ngClass]="{first:first}" *ngFor="let link of anchorLinks | async ; let first = first; " (click)="animateTo(link.id)">
+        <i class="material-icons large-icon">
+            {{link.icon}}
+          </i>
+      </div>
     </div>
   </div>
 

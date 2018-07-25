@@ -4,13 +4,58 @@
     height: 100%;
     width: 60px;
     position: fixed;
+    .scroll-status{
+        height: $menu-height;   
+        padding-top: calc(25% + 2px);
+        position: relative;
+        cursor: pointer; 
+
+        .scroll-icon{
+            margin-left: 25%;       
+        }
+        
+        &:hover{
+            background-color: $secondary-color;
+        }
+    }
+    .toolbar-container{
+        margin-top: $menu-height;
+    }
+    .progress-div{
+        height:1px;
+        border-bottom: 1px solid;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+    .first{
+        border-top:1px solid $secondary-color;
+    }
+    .anchor{
+        height: $menu-height;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border-bottom: 1px solid $secondary-color;  
+        cursor: pointer;
+        .large-icon{
+            margin: auto;
+            font-size: 32px;
+        } 
+        
+        &:hover{
+            color:white;
+            background-color: $secondary-color;
+        }
+    }
+    
 }
 
 .vcenter {
     min-height: 100%;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    //justify-content: center;
     flex-direction: column;
 }
 
