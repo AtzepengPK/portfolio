@@ -1,0 +1,158 @@
+{
+  "menu" : [ {
+    "title" : "Home",
+    "url" : "home"
+  }, {
+    "title" : "Projects",
+    "url" : "projects"
+  }, {
+    "title" : "About",
+    "url" : "about"
+  } ],
+  "scrollable" : [ {
+    "configuration" : {
+      "contentClassName" : "mainContent"
+    },
+    "html" : "<div>ciao da 0</div>",
+    "icon" : "bug_report",
+    "id" : "0",
+    "label" : "Development",
+    "order" : 0,
+    "sections" : [ {
+      "html" : "<div>ciao da 0</div>",
+      "id" : "0",
+      "order" : 0,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 1</div>",
+      "id" : "1",
+      "order" : 1,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 2</div>",
+      "id" : "2",
+      "order" : 2,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 3</div>",
+      "id" : "3",
+      "order" : 3,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 4</div>",
+      "id" : "4",
+      "order" : 4,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 5</div>",
+      "id" : "5",
+      "order" : 5,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 6</div>",
+      "id" : "6",
+      "order" : 6,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 7</div>",
+      "id" : "7",
+      "order" : 7,
+      "rate": 5
+    } ]
+  }, {
+    "configuration" : {
+      "contentClassName" : "mainContent"
+    },
+    "html" : "<div>ciao da 1</div>",
+    "icon" : "work",
+    "id" : "1",
+    "label" : "Experience",
+    "order" : 1,
+    "sections" : [ {
+      "html" : "<div>ciao da 0</div>",
+      "id" : "0",
+      "order" : 0,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 1</div>",
+      "id" : "1",
+      "order" : 1,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 2</div>",
+      "id" : "2",
+      "order" : 2,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 3</div>",
+      "id" : "3",
+      "order" : 3,
+      "rate": 5
+    } ]
+  }, {
+    "configuration" : {
+      "contentClassName" : "mainContent"
+    },
+    "html" : "<div>ciao da 2</div>",
+    "icon" : "rowing",
+    "id" : "2",
+    "label" : "Hobby",
+    "order" : 2,
+    "sections" : [ {
+      "html" : "<div>ciao da 0</div>",
+      "id" : "0",
+      "order" : 0,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 1</div>",
+      "id" : "1",
+      "order" : 1,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 2</div>",
+      "id" : "2",
+      "order" : 2,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 3</div>",
+      "id" : "3",
+      "order" : 3,
+      "rate": 5
+    } ]
+  }, {
+    "configuration" : {
+      "contentClassName" : "mainContent"
+    },
+    "html" : "<div>ciao da 3</div>",
+    "icon" : "bug_report",
+    "id" : "3",
+    "label" : "Development 2",
+    "order" : 3,
+    "sections" : [ {
+      "html" : "<div>ciao da 0</div>",
+      "id" : "0",
+      "order" : 0,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 1</div>",
+      "id" : "1",
+      "order" : 1,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 2</div>",
+      "id" : "2",
+      "order" : 2,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 3</div>",
+      "id" : "3",
+      "order" : 3,
+      "rate": 5
+    }, {
+      "html" : "<div>ciao da 4</div>",
+      "id" : "4",
+      "order" : 4,
+      "rate": 5
+    } ]
+  } ]
+}

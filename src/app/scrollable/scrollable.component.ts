@@ -17,6 +17,8 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
   private overflowStatus: String;
   private menuHeight = 60;
   isEnabled: boolean;
+  rates: Observable<any[]>;
+
 
   constructor(private myElement: ElementRef, private _data: DataService, private ScrollableService: ScrollableService) {
   }
@@ -24,7 +26,27 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.mainPageContainer = this.myElement.nativeElement.firstElementChild;
     this.mainPageContainerOffsetY = this.mainPageContainer.offsetTop;
-    
+
+    const array1 = [6,5, 8, 4,2,1,6];
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+    let total = array1.reduce(reducer);
+    let array2 = [];
+
+    for(let i =0;i<array1.length;i++){
+      array2.push((array1[i] * 100)/total);
+    }
+    console.log(array2);
+    console.log(array2.reduce(reducer));
+
+    let array3 = [];
+    for(let i =0;i<array1.length;i++){
+      array3.push((array2[i] * 360)/100);
+    }
+    console.log(array3);
+    console.log(array3.reduce(reducer));
+
+
   }
 
   ngOnInit() {
@@ -40,8 +62,18 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
       x => {
         this.isEnabled=x;
       });
-      this.ScrollableService.disable();
+    this.ScrollableService.disable();
   }
+
+
+
+
+
+
+
+
+
+
 
   @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {
     const currPos: number = document.documentElement.scrollTop;

@@ -2,7 +2,20 @@
     scrollSelector="mainSection">
     <div *ngFor="let section of scrollableObservable | async" [id]="section.id" class="mainSection" fxLayout>
         <div [className]="section.configuration.contentClassName" fxFlex="50" fxFlexOrder="1">
-            <div class="circle-container">
+            
+            <div class="circ">
+
+                <div class="sect"></div>
+                <div class="sect"></div>
+                <div class="sect"></div>
+                <div class="sect"></div>
+                <div class="sect"></div>
+                <div class="sect"></div>
+                <div class="sect"></div>
+                <div class="sect"></div>
+              
+              </div>
+            <!--div class="circle-container">
                 <div class="section-circle s-50">
                     <div class="section-circle s-90">
                         <div>
@@ -12,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div-->
 
         </div>
 

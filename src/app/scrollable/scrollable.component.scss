@@ -10,6 +10,25 @@
     position: relative;
 }
 
+.circ {
+    height: 300px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+  .sect {
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-right: 150px solid red;
+    border-top: 150px solid transparent;
+    transform-origin: bottom left;
+  }
+
 .mainSection {
     height: $scrollable-container-height;
     flex-wrap: wrap;
