@@ -5,13 +5,32 @@
 
 .scrollableContainer {
     height: $scrollable-container-height;
-    width: 100vw;
+    width: 100%;
     background-color: $primary-color;
     position: relative;
 }
 
+.circ {
+    height: 300px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+  .sect {
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-right: 150px solid red;
+    border-top: 150px solid transparent;
+    transform-origin: bottom left;
+  }
+
 .mainSection {
-    height: $scrollable-container-height;
+    height: $main-container-height;
     flex-wrap: wrap;
     .circle-container{
         position: relative;
@@ -42,7 +61,7 @@
 }
 
 .detailContainer {
-    overflow-y: scroll;
+    overflow-y: hidden;
     height: 100%
 }
 

@@ -25,6 +25,7 @@ import { ScrollableService } from './scrollable/scrollable.service';
 import { LateralToolbarComponent } from './lateral-toolbar/lateral-toolbar.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AboutComponent } from './about/about.component';
+import { SkillPieComponent } from './skill-pie/skill-pie.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AboutComponent } from './about/about.component';
     FooterComponent,
     LateralToolbarComponent,
     ProjectsComponent,
-    AboutComponent
+    AboutComponent,
+    SkillPieComponent
   ],
   imports: [
     BrowserModule,

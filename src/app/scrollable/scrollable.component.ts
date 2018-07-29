@@ -17,48 +17,86 @@ export class ScrollableComponent implements OnInit, AfterViewInit {
   private overflowStatus: String;
   private menuHeight = 60;
   isEnabled: boolean;
+  rates: Observable<any[]>;
 
-  constructor(private myElement: ElementRef, private _data: DataService, private ScrollableService: ScrollableService) {
+
+  constructor(private myElement: ElementRef, private _data: DataService, private scrollableService: ScrollableService) {
   }
 
   ngAfterViewInit(): void {
     this.mainPageContainer = this.myElement.nativeElement.firstElementChild;
     this.mainPageContainerOffsetY = this.mainPageContainer.offsetTop;
-    
+
+<<<<<<< HEAD
+=======
+    const array1 = [6,5, 8, 4,2,1,6];
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+    let total = array1.reduce(reducer);
+    let array2 = [];
+
+    for(let i =0;i<array1.length;i++){
+      array2.push((array1[i] * 100)/total);
+    }
+    console.log(array2);
+    console.log(array2.reduce(reducer));
+
+    let array3 = [];
+    for(let i =0;i<array1.length;i++){
+      array3.push((array2[i] * 360)/100);
+    }
+    console.log(array3);
+    console.log(array3.reduce(reducer));
+
+
+>>>>>>> 70fe8c304b0719de1bce7443ab87ba8cbfbc9411
   }
 
   ngOnInit() {
     this.scrollableObservable = this._data.getScrollable().map(
       (data) => {
-        data.sort((a:any,b:any) => {
+        data.sort((a: any, b: any) => {
           return a.order < b.order ? -1 : 1;
         });
         return data;
       }
     );
-    this.ScrollableService.isEnabled.subscribe(
+    this.scrollableService.isEnabled.subscribe(
       x => {
-        this.isEnabled=x;
+        this.isEnabled = x;
       });
-      this.ScrollableService.disable();
+<<<<<<< HEAD
+    this.scrollableService.disable();
+=======
+    this.ScrollableService.disable();
+>>>>>>> 70fe8c304b0719de1bce7443ab87ba8cbfbc9411
   }
+
+
+
+
+
+
+
+
+
+
 
   @HostListener('window:scroll', ['$event']) private onScroll(event: Event): void {
     const currPos: number = document.documentElement.scrollTop;
 
     if (currPos >= (this.mainPageContainerOffsetY - (this.menuHeight + 20)) &&
       currPos <= (this.mainPageContainerOffsetY - (this.menuHeight - 20))) {
-        if(!this.isEnabled){
-          this.ScrollableService.isEnabled.emit(true);
-        }
-        if (this.overflowStatus !== 'scroll') {
-        
+      if (!this.isEnabled) {
+        this.scrollableService.isEnabled.emit(true);
+      }
+      if (this.overflowStatus !== 'scroll') {
         this.overflowStatus = 'scroll';
         document.documentElement.scrollTop = (this.mainPageContainerOffsetY - this.menuHeight);
       }
     } else {
-      if(this.isEnabled){
-        this.ScrollableService.isEnabled.emit(false);
+      if (this.isEnabled) {
+        this.scrollableService.isEnabled.emit(false);
       }
       if (this.overflowStatus !== 'hidden') {
         this.overflowStatus = 'hidden';

@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter, AfterViewInit } from '@angular/core';
 
 @Injectable()
-export class ScrollableService{
+export class ScrollableService {
 
     isEnabled = new EventEmitter<boolean>(false);
     private current: boolean;
@@ -14,16 +14,15 @@ export class ScrollableService{
 
     disable() {
         this.isEnabled.emit(false);
-        console.log(this.current)
+        console.log(this.current);
     }
 
     enable() {
         this.isEnabled.emit(true);
-        console.log(this.current)
+        console.log(this.current);
     }
 
-    toogle(){
+    toogle() {
         this.isEnabled.emit(!this.current);
     }
-
 }

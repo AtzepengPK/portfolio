@@ -11,7 +11,8 @@ $light-gray: #f3f3f3;
 $menu-height: 60px;
 
 // Scrollable
-$scrollable-container-height: calc(100vh - #{$menu-height});
+$scrollable-container-height: calc(100vh -  #{$menu-height});
+$main-container-height: calc(50vh - #{$menu-height/2});
 
 // Lateral
 $offset-from-center: 35vh;
