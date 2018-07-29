@@ -22,4 +22,14 @@ export class DataService {
     return this.menuItems;
   }
 
+  getRadius(){
+    let array = this.scrollableObservable.subscribe(x =>{
+      x.map((el:any) => {
+        el.sections.map(section =>{
+          console.log(section.rate)
+        })
+      })
+    })
+  }
+
 }

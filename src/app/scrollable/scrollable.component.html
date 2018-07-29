@@ -2,37 +2,7 @@
     scrollSelector="mainSection">
     <div *ngFor="let section of scrollableObservable | async;let i = index" [id]="section.id" class="mainSection" fxLayout>
         <div [className]="section.configuration.contentClassName" fxFlex="50" fxFlexOrder="1">
-<<<<<<< HEAD
-
             <portfolio-skill-pie [data]="section.sections" [id]="section.id"></portfolio-skill-pie>
-
-=======
-            
-            <div class="circ">
-
-                <div class="sect"></div>
-                <div class="sect"></div>
-                <div class="sect"></div>
-                <div class="sect"></div>
-                <div class="sect"></div>
-                <div class="sect"></div>
-                <div class="sect"></div>
-                <div class="sect"></div>
-              
-              </div>
->>>>>>> 70fe8c304b0719de1bce7443ab87ba8cbfbc9411
-            <!--div class="circle-container">
-                <div class="section-circle s-50">
-                    <div class="section-circle s-90">
-                        <div>
-                            <i class="material-icons">
-                                {{section.icon}}
-                            </i>
-                        </div>
-                    </div>
-                </div>
-            </div-->
-
         </div>
         <div fxFlex="50" fxFlexOrder="2">
             <div [style.overflow-y]="overflowStatus" class="detailContainer" fxLayoutWrap portfolioScrollFixed [enabled]="isEnabled"
